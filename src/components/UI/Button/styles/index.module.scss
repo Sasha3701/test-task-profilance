@@ -1,0 +1,61 @@
+@import '../../../../styles/variables.scss';
+
+.button {
+	display: block;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: all 0.2s ease-in;
+	font-size: 14px;
+
+	&_size_sm {
+		max-width: 120px;
+	}
+
+	&_size_md {
+		max-width: 160px;
+	}
+
+	&_size_lg {
+		max-width: 220px;
+	}
+	&_type_base {
+		width: 100%;
+		text-align: center;
+		padding: 5px 10px;
+		background-color: $orange;
+		color: $white;
+		text-shadow: 2px 2px 2px $black;
+		border-radius: 6px;
+		border: none;
+		outline: none;
+		box-shadow: 4px 4px 8px 0px $shadow;
+		&:hover {
+			background-color: $orange-hover;
+			box-shadow: 4px 4px 8px 0px $shadow-hover;
+		}
+	
+		&:active {
+			background-color: $orange-active;
+		}
+	
+		&:focus {
+			outline: none;
+		}
+	}
+	&_type_text {
+		width: max-content;
+		max-width: min-content;
+		background-color: inherit;
+		border: none;
+		&:hover {
+			transform: scale(1.1);
+		}
+		&:active {
+			transform: scale(0.9);
+		}
+	
+		&:focus {
+			outline: none;
+		}
+	}
+}
