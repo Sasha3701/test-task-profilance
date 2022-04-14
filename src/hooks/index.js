@@ -23,3 +23,16 @@ export const useWindowSize = () => {
 
   return windowSize;
 };
+
+export const useModal = () => {
+  const [isShowing, setIsShowing] = useState(false);
+
+  function toggle() {
+    setIsShowing((pervState) => !pervState);
+  }
+
+  return {
+    isShowing,
+    toggle,
+  };
+};

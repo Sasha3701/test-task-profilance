@@ -6,14 +6,25 @@ import { MenuIcon, CloseIcon } from "../../images";
 import { useState } from "react";
 import classNames from "classnames";
 import { PATHS } from "../../const";
+import { useModal } from "../../hooks";
+import Modal from "../Modal";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const auth = useSelector((state) => state.auth);
   const { pathname } = useLocation();
+  const { isShowing, toggle } = useModal();
 
   const handleOpen = () => {
     setOpen((prevState) => !prevState);
+  };
+
+  const handleModal = () => {
+    handleOpen();
+    if (auth.login) {
+      return;
+    }
+    toggle();
   };
 
   return (
@@ -32,8 +43,11 @@ const Menu = () => {
             Новости
           </Link>
         </nav>
-        <Button variant="text">{!auth.login ? "Вход" : "Выйти"}</Button>
+        <Button onClick={handleModal} variant="text">
+          {!auth.login ? "Вход" : "Выйти"}
+        </Button>
       </div>
+      <Modal isShowing={isShowing} hide={toggle} />
     </>
   );
 };
