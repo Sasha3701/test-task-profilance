@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import { PATHS } from "./const";
 
 const BasePage = lazy(() => import("./pages/Base"));
 const NewsPage = lazy(() => import("./pages/News"));
@@ -8,7 +9,7 @@ const App = () => {
   return (
     <Routes>
       <Route
-        path="/"
+        path={PATHS.MAIN}
         element={
           <Suspense fallback={<div>Загрузка...</div>}>
             <BasePage />
@@ -16,7 +17,7 @@ const App = () => {
         }
       />
       <Route
-        path="news"
+        path={PATHS.NEWS}
         element={
           <Suspense fallback={<div>Загрузка...</div>}>
             <NewsPage />

@@ -11,3 +11,8 @@ export const BREAKPOINTS = {
   md: "768",
   sm: "576",
 };
+
+export const PATHS = {
+  MAIN: "/",
+  NEWS: "/news",
+};
