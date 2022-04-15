@@ -13,7 +13,11 @@ export const newsSlice = createSlice({
     initialiseNews: (state, action) => {
       state.news = action.payload;
     },
-    addNews: (state, action) => {},
+    addNews: (state, action) => {
+      const cloneNews = cloneDeep(state.news);
+      cloneNews.push(action.payload);
+      state.news = cloneNews;
+    },
     deleteNews: (state, action) => {
       const cloneNews = cloneDeep(state.news);
       state.news = cloneNews.filter((item) => item.id !== action.payload);
@@ -53,11 +57,12 @@ export const deleteFunc = (id) => async (dispatch) => {
   }
 };
 
-export const addFunc = (callback) => async (dispatch) => {
+export const addFunc = (news) => async (dispatch) => {
   try {
-    const news = await api.getNews();
-    dispatch(initialiseNews(news));
-    callback();
+    // Какой-либо запрос
+
+    const currentDate = new Date().toString();
+    dispatch(addNews({ ...news, date: currentDate }));
   } catch (e) {
     // Обработка ошибок
   }

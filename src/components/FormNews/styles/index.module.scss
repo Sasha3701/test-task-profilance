@@ -1,0 +1,18 @@
+.form {
+	box-sizing: border-box;
+	padding: 20px;
+
+	&__input {
+		margin-bottom: 5px;
+	}
+
+	&__textarea {}
+
+	&__actions {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		box-sizing: border-box;
+		margin-top: 10px;
+	}
+}

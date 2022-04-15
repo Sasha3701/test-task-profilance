@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initialiseFunc } from "../../../store/newsSlice";
 import { checkAccessNews } from "../../../utils";
 import NewsItem from "../NewsItem";
 import styles from "./styles/index.module.scss";
 
-const NewsList = () => {
+const NewsList = memo(({ news }) => {
   const [success, setSuccess] = useState(false);
-  const news = useSelector((state) => state.news.news);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -41,6 +40,6 @@ const NewsList = () => {
       )}
     </div>
   );
-};
+});
 
 export default NewsList;

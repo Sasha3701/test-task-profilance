@@ -1,10 +1,10 @@
-import { NewsList } from "../components/NewsComponents";
+import NewsComponent from "../components/NewsComponents";
 import Layout from "../layout";
 
 const News = () => {
   return (
     <Layout>
-      <NewsList />
+      <NewsComponent />
     </Layout>
   );
 };

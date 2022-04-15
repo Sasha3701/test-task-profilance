@@ -9,6 +9,8 @@
 		@media (max-width: '768px') {
 			grid-template-columns: 1fr;
 		}
+		padding: 0;
+		margin: 0;
 	}
 
 	&__item {
@@ -18,5 +20,6 @@
 	}
 	&__text {
 		font-size: 14px;
+		text-align: center;
 	}
 }

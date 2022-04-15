@@ -1,0 +1,10 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	margin-top: 50px;
+	&__form {
+		margin-top: 20px;
+		box-sizing: border-box;
+	}
+}

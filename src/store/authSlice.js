@@ -6,7 +6,7 @@ const initialState = {
   firstName: "",
   lastName: "",
   login: "",
-  role: ROLES.GUEST,
+  role: ROLES.USER,
   error: false,
 };
 

@@ -1,0 +1,23 @@
+@import '../../../../styles/variables.scss';
+
+.input-search {
+	display: block;
+	box-sizing: border-box;
+	border-radius: 6px;
+	border: 1px solid $gray;
+	outline: none;
+	padding: 5px;
+	margin: 0;
+	font-size: 12px;
+	transition: all 0.2s ease-in;
+	width: 100%;
+	max-width: 300px;
+
+	&:hover {
+		border-color: $gray-dark;
+	}
+
+	&:focus {
+		border-color: $gray-dark;
+	}
+}
