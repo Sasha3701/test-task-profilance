@@ -38,7 +38,7 @@ const FormNews = ({ onCancel }) => {
         label="Описание"
       />
       <div className={styles.form__actions}>
-        <Button onClick={handleAdd}>Добавить</Button>
+        <Button size='sm' onClick={handleAdd}>Добавить</Button>
         <Button onClick={onCancel} variant="text">
           Отмена
         </Button>

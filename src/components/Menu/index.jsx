@@ -1,12 +1,13 @@
 import styles from "./styles/index.module.scss";
 import { Button } from "../UI";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { MenuIcon, CloseIcon } from "../../images";
 import { useState } from "react";
 import classNames from "classnames";
 import { PATHS } from "../../const";
 import { useModal } from "../../hooks";
+import { logoutUser } from "../../store/authSlice";
 import Modal from "../Modal";
 
 const Menu = () => {
@@ -14,6 +15,7 @@ const Menu = () => {
   const auth = useSelector((state) => state.auth);
   const { pathname } = useLocation();
   const { isShowing, toggle } = useModal();
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
     setOpen((prevState) => !prevState);
@@ -22,6 +24,7 @@ const Menu = () => {
   const handleModal = () => {
     handleOpen();
     if (auth.login) {
+      dispatch(logoutUser());
       return;
     }
     toggle();
