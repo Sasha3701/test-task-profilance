@@ -4,6 +4,11 @@ export const ROLES = {
   ADMIN: "admin",
 };
 
+export const STATUS = {
+  OK: "ok",
+  CHECK: "check",
+};
+
 export const BREAKPOINTS = {
   xxl: "1400",
   xl: "1200",

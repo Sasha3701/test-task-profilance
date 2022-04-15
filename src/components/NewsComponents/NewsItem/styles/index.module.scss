@@ -1,0 +1,50 @@
+@import '../../../../styles/variables.scss';
+
+.news {
+	box-sizing: border-box;
+	border: 1px solid $orange;
+	box-shadow: 4px 4px 8px 0px $shadow;
+	border-radius: 6px;
+	width: 250px;
+	padding: 10px;
+	&_checked {
+		opacity: 0.5;
+	}
+	&__header {
+		box-sizing: border-box;
+		border-bottom: 1px solid $gray;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 5px 0px;
+	}
+	&__title {
+		margin: 0;
+		padding: 0;
+		font-size: 16px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 200px;
+		overflow: hidden;
+	}
+	&__date {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		color: $gray-dark;
+	}
+	&__body {
+		padding: 5px 0px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	&__buttons {
+		display: flex;
+		width: 60px;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+		margin-top: 5px;
+	}
+}

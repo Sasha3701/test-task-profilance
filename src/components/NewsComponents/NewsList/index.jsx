@@ -1,32 +1,41 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { initialiseFunc } from "../../../store/newsSlice";
+import { checkAccessNews } from "../../../utils";
 import NewsItem from "../NewsItem";
 import styles from "./styles/index.module.scss";
 
 const NewsList = () => {
   const [success, setSuccess] = useState(false);
-  const { news, auth } = useSelector((state) => state);
+  const news = useSelector((state) => state.news.news);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!news.length) {
-      dispatch(() => {
-        setSuccess(true);
-      });
+      dispatch(
+        initialiseFunc(() => {
+          setSuccess(true);
+        })
+      );
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles["news-list"]}>
       {news.length ? (
-        <ul>
-          <li>
-            <NewsItem />
-          </li>
+        <ul className={styles["news-list__list"]}>
+          {news.map((item) =>
+            checkAccessNews(item.status, auth.role) ? (
+              <li className={styles["news-list__item"]} key={item.id}>
+                <NewsItem news={item} />
+              </li>
+            ) : null
+          )}
         </ul>
       ) : success ? (
-        <div>Нет новостей</div>
+        <div className={styles["news-list__text"]}>Нет новостей</div>
       ) : (
         <div>Загрузка...</div>
       )}

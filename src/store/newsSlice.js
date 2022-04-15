@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { cloneDeep } from "lodash";
 import api from "../api";
 
 const initialState = {
@@ -13,8 +14,19 @@ export const newsSlice = createSlice({
       state.news = action.payload;
     },
     addNews: (state, action) => {},
-    deleteNews: (state, action) => {},
-    okNews: (state, action) => {},
+    deleteNews: (state, action) => {
+      const cloneNews = cloneDeep(state.news);
+      state.news = cloneNews.filter((item) => item.id !== action.payload);
+    },
+    okNews: (state, action) => {
+      const cloneNews = cloneDeep(state.news);
+      state.news = cloneNews.map((item) => {
+        if (item.id === action.payload) {
+          return { ...item, status: "ok" };
+        }
+        return item;
+      });
+    },
   },
 });
 
@@ -26,6 +38,36 @@ export const initialiseFunc = (callback) => async (dispatch) => {
     const news = await api.getNews();
     dispatch(initialiseNews(news));
     callback();
+  } catch (e) {
+    // Обработка ошибок
+  }
+};
+
+export const deleteFunc = (id) => async (dispatch) => {
+  try {
+    // Какой-либо запрос
+
+    dispatch(deleteNews(id));
+  } catch (e) {
+    // Обработка ошибок
+  }
+};
+
+export const addFunc = (callback) => async (dispatch) => {
+  try {
+    const news = await api.getNews();
+    dispatch(initialiseNews(news));
+    callback();
+  } catch (e) {
+    // Обработка ошибок
+  }
+};
+
+export const okFunc = (id) => async (dispatch) => {
+  try {
+    // Какой-либо запрос
+
+    dispatch(okNews(id));
   } catch (e) {
     // Обработка ошибок
   }
