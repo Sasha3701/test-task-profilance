@@ -1,8 +1,12 @@
-import Button from "../components/UI/Button";
+import { NewsList } from "../components/NewsComponents";
 import Layout from "../layout";
 
 const News = () => {
-  return <Layout></Layout>;
+  return (
+    <Layout>
+      <NewsList />
+    </Layout>
+  );
 };
 
 export default News;
