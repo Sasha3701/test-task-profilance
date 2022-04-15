@@ -1,25 +1,11 @@
-import { useEffect, useState, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { initialiseFunc } from "../../../store/newsSlice";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 import { checkAccessNews } from "../../../utils";
 import NewsItem from "../NewsItem";
 import styles from "./styles/index.module.scss";
 
 const NewsList = memo(({ news }) => {
-  const [success, setSuccess] = useState(false);
   const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!news.length) {
-      dispatch(
-        initialiseFunc(() => {
-          setSuccess(true);
-        })
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className={styles["news-list"]}>
@@ -33,10 +19,8 @@ const NewsList = memo(({ news }) => {
             ) : null
           )}
         </ul>
-      ) : success ? (
-        <div className={styles["news-list__text"]}>Нет новостей</div>
       ) : (
-        <div>Загрузка...</div>
+        <div className={styles["news-list__text"]}>Нет новостей</div>
       )}
     </div>
   );

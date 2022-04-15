@@ -1,18 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { cloneDeep } from "lodash";
-import api from "../api";
+import news from '../data/news';
 
 const initialState = {
-  news: [],
+  news: news,
 };
 
 export const newsSlice = createSlice({
   name: "news",
   initialState,
   reducers: {
-    initialiseNews: (state, action) => {
-      state.news = action.payload;
-    },
     addNews: (state, action) => {
       const cloneNews = cloneDeep(state.news);
       cloneNews.push(action.payload);
@@ -34,18 +31,8 @@ export const newsSlice = createSlice({
   },
 });
 
-export const { initialiseNews, addNews, deleteNews, okNews } =
+export const { addNews, deleteNews, okNews } =
   newsSlice.actions;
-
-export const initialiseFunc = (callback) => async (dispatch) => {
-  try {
-    const news = await api.getNews();
-    dispatch(initialiseNews(news));
-    callback();
-  } catch (e) {
-    // Обработка ошибок
-  }
-};
 
 export const deleteFunc = (id) => async (dispatch) => {
   try {
