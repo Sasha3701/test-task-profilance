@@ -32,14 +32,14 @@ const ModalContent = ({ hide }) => {
         <h1 className={styles.window__title}>Авторизация</h1>
         <Input
           value={credentions.login}
-          className={styles.window__input}
+          classes={styles.window__input}
           onChange={(e) => handleChange(e, "login")}
           id="login"
           type="text"
           label="Логин"
         />
         <Input
-          className={styles.window__input}
+          classes={styles.window__input}
           value={credentions.password}
           onChange={(e) => handleChange(e, "password")}
           id="password"
@@ -49,10 +49,16 @@ const ModalContent = ({ hide }) => {
         {error ? (
           <div className={styles.window__message}>Не корректные данные</div>
         ) : null}
-        <Button onClick={handleSubmit}>Войти</Button>
+        <Button
+          classes={styles["window__button-login"]}
+          size="sm"
+          onClick={handleSubmit}
+        >
+          Войти
+        </Button>
         <div className={styles["window__button-close"]}>
           <Button onClick={hide} variant="text">
-            <CloseIcon />
+            <CloseIcon className={styles["window__button-close-icon"]} />
           </Button>
         </div>
       </div>
